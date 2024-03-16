@@ -1,21 +1,20 @@
-function* dataGenerator() {
+function createCounter() {
+    //Initialise une varialbe count dans le scope parent
+    let count = 0;
 
-    const data =['Donnée 1', 'Donnée 2', 'Donnée 3'];
-    for (let i = 0; i < data.length; i++) {
-        //simuller une opération asynchrone avec un délai .
-        yield new Promise(resolve => setTimeout(() => resolve(data[i]), 1000));
-
-    }
+    // la fonction retournée est une fermiture.Elle a acces a count.
+    return function() {
+        //incrémente count a chaque appel .
+        count += 1;
+        console.log(`Cette fonction a été appellée ${count} fois.`);
+    };
 }
 
-async function consumeData() {
-    const generator = dataGenerator(); //inisialisé le generateur 
+// utilisation de la fermiture
+const myCounter = createCounter();// Crée une nouvelle instance de compteur.
 
-    for (let promise of generator){
-        const data = await promise; //Attendre la resolution de chaque promise generée
-        console.log(data);
+myCounter(); // Appelle la fonction retournée pour la première fois.
+myCounter(); // Appelle la fonction retournée pour la deuxième fois.
+myCounter(); // Et ainsi de suite...
 
 
-    }
-}
-consumeData()
