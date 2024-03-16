@@ -22,3 +22,15 @@ Promise.all([
 .then(response => Promise.all(response.map(res => res.json()))) // Transformer toutes les reponse en json.
 .then(posts => console.log(posts)) // afficher tous les postes récupérés.
 .catch(error => console.error('Erreur lors de la récupération des posts : ', error));
+
+// fonction asynchrone poàur récypérer une serie de poste un par un , sequenciellement .
+
+async function fetchPostsSerially() {
+    const posts = [1, 2, 3]; //IDs des postes a récupérer
+    for (const id of posts) {
+        const response = await fetch (`https://jsonplaceholder.typicode.com/posts/${id}`);
+        const post = await response.json();
+        console.log(post);
+    }
+
+}
