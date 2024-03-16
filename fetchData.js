@@ -1,26 +1,11 @@
-// URL de l'API pour obtenir des posts de démonstration
-const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+// effectué une requête Get pour récupérer une poste spécifique.
+fetch('https://jsonplaceholder.typicode.com/posts/1')
+.then(response => {
+    // verifier si la reponse est réussie.
+    if (!response.ok) throw new error ('Echec du réseau');
+    //Transformer la resonse en json.
+    return response.json();
+})
 
-// function asynchrone pour récupérée et afficher le posts
-
-async function fetchPost() {
-    try {
-        // Envoi la requete fetch de l'API
-        const response  = await fetch(apiUrl);
-
-        // verification si la requête a réussir
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
-        }
-
-        // extraction de json de la reponse
-        const posts = await response.json();
-
-        //Traitment et affichage des données
-        console.log(posts)
-    } catch (err) {
-        console.error("Erreur lors de la recupération des données:",err)
-    }
-}
-fetchPost()
-
+.then(post => console.log(post)) // afficher le poste récupéré.
+. catch(error => console.error('Erreur:', error));
