@@ -34,3 +34,18 @@ async function fetchPostsSerially() {
     }
 
 }
+
+// Foncton pour lancer une reqête fetch avec timeout 
+
+const fetchWithTimeout = (url, timeout) => {
+    return Promise.race([
+        fetch(url), // la requête principal 
+        new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), timeout)) // Une promesse qui sera rejetée après un délai spécifié, simulant un timeout.
+    ]);
+};
+
+// utiliser fetchWithTimeout pour récuperer un post avec un timeout de 1 seconde
+fetchWithTimeout('https://jsonplaceholder.typicode.com/posts/1', 1000)
+.then(response => response.json())
+.then(post => console.log(post))
+.catch(error => console.error('Erreur ou Timeout', error))
