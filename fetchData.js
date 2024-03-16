@@ -1,20 +1,26 @@
-function createCounter() {
-    //Initialise une varialbe count dans le scope parent
-    let count = 0;
+// URL de l'API pour obtenir des posts de démonstration
+const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-    // la fonction retournée est une fermiture.Elle a acces a count.
-    return function() {
-        //incrémente count a chaque appel .
-        count += 1;
-        console.log(`Cette fonction a été appellée ${count} fois.`);
-    };
+// function asynchrone pour récupérée et afficher le posts
+
+async function fetchPost() {
+    try {
+        // Envoi la requete fetch de l'API
+        const response  = await fetch(apiUrl);
+
+        // verification si la requête a réussir
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        // extraction de json de la reponse
+        const posts = await response.json();
+
+        //Traitment et affichage des données
+        console.log(posts)
+    } catch (err) {
+        console.error("Erreur lors de la recupération des données:",err)
+    }
 }
-
-// utilisation de la fermiture
-const myCounter = createCounter();// Crée une nouvelle instance de compteur.
-
-myCounter(); // Appelle la fonction retournée pour la première fois.
-myCounter(); // Appelle la fonction retournée pour la deuxième fois.
-myCounter(); // Et ainsi de suite...
-
+fetchPost()
 
