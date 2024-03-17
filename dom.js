@@ -1,11 +1,9 @@
-const button = document.getElementById('changeText');
+
 const demoDiv = document.getElementById('demo');
 
 function changeText(){
     demoDiv.textContent = 'Texte modifié';
 }
-
-button.addEventListener('click', changeText);
 
 changeText()
 
@@ -51,3 +49,10 @@ document.body.appendChild(paragraphe3);
 paragraphe3.style.backgroundColor ='red';
 paragraphe3.style.color ='white';
 paragraphe3.style.padding = '10px';
+
+
+const button = document.getElementById('changeText');
+button.addEventListener('click', function(){
+    alert("le bouton vien d'etre cliqué👌!")
+})
+
