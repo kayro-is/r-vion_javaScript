@@ -63,3 +63,18 @@ form.addEventListener('submit', function(e){
 
     console.log("Formulaire soumis avec succés");
 })
+
+const monBouton = document.getElementById('monBouton');
+monBouton.addEventListener('click', function(){
+    alert("mon bouton vien d'etre cliquée")
+})
+
+document.getElementById('divParent').addEventListener('click', function (){
+    console.log('Clic détécté sur la div parent');
+}, false); // ce false indique que l'écouteur est en phase de bouillonnement
+
+document.getElementById('monBouton').addEventListener('click', function (event){
+    console.log('Clic détécté sur le bouton');
+    event.stopPropagation();// Empêche la propagation de l'événement au div parent
+
+}, false);
