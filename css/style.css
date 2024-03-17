@@ -1,0 +1,10 @@
+/*Définition d'une animation clé qui change l'opacité et la position certicale de l'élément */
+@keyframes exempleAnimation {
+    0% {opacity: 1; transform: translateY(-20px);} /* état initiale: invisible et déplacé vers le haut */
+    100% {opacity: 1; transform: translateY(0); } /* etat finale : totalement visible et a ca position original */
+}
+
+/* Application de l'animation de la classe divAnime */
+.divAnime {
+    animation: exempleAnimation 1s ease forwards ; /*Durée de 1 second, avec un effet d'acceleration 'ease' */
+}
