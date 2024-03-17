@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemple de web worker</title>
+</head>
+<body>
+    
+    <script>
+        // verifié si le web workers sont supportés
+        if(window.Worker) {
+            // crée un nouveau web worker
+            const myWorker = new Worker('worker.js');
+
+            myWorker.postMessage('Hello, Worker!');
+
+            // ecoute pour les message en provenance de worker
+            myWorker.addEventListener('message',(e) => {
+                console.log('Message recu du worker:', e.data);
+            });
+        } else {
+            console.log('les Web Workers ne sont pas supporter dans ce navigateur ')
+        }
+        
+    </script>
+</body>
+</html>
