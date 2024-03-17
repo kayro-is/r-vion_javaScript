@@ -56,3 +56,10 @@ button.addEventListener('click', function(){
     alert("le bouton vien d'etre cliqué👌!")
 })
 
+const form = document.getElementById('contactForm')
+form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+
+    console.log("Formulaire soumis avec succés");
+})
